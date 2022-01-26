@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: code-kitty-api
+  name: code-kitty-api
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-kitty-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: code-kitty-api
+    spec:
+      containers:
+      - image: ghcr.io/codekittyshow/code-kitty-api:latest
+        name: code-kitty-api
+        resources: {}
+        env:
+        - name: PORT
+          value: "8080"
+        - name: MONGO_DB_URI
+          value: "mongodb+srv://chamod:12345@codekitty.sacfe.mongodb.net/CodeKitty?retryWrites=true&w=majority"
+status: {}
