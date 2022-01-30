@@ -7,13 +7,7 @@ kubectl create ns prod -o yaml --dry-run=client > prod-namespace.yaml
 
 First Create the Code Kitty API Deployment:
 ```shell
-kubectl create deployment code-kitty-api --image=ghcr.io/codekittyshow/code-kitty-api:latest -n prod -o yaml --dry-run=client > api/code-kitty-api-deploy.yaml
-```
-
-Set the port
-```yaml
-ports:
-  - containerPort: 8080
+kubectl create deployment code-kitty-api --image=ghcr.io/codekittyshow/code-kitty-api:latest -n prod --port 8080 -o yaml --dry-run=client > api/code-kitty-api-deploy.yaml
 ```
 
 Run below command to get logs
@@ -75,6 +69,12 @@ kubectl apply -f mongodb
 kubectl apply -f api
 ```
 
+Create service for Code Kitty API Deployment
 ```shell
 kubectl expose deployment/code-kitty-api -n prod
+```
+
+Create the Code Kitty Frontend Deployment:
+```shell
+kubectl create deployment code-kitty --image=ghcr.io/codekittyshow/code-kitty:latest -n prod --port 80 -o yaml --dry-run=client > fn/code-kitty-fn-deploy.yaml
 ```
