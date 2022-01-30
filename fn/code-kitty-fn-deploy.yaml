@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: code-kitty
-  name: code-kitty
+    app: code-kitty-fn
+  name: code-kitty-fn
   namespace: prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: code-kitty
+      app: code-kitty-fn
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: code-kitty
+        app: code-kitty-fn
     spec:
       containers:
       - image: ghcr.io/codekittyshow/code-kitty:latest
