@@ -21,7 +21,7 @@ Pod logs are like below
     > tsc && node dist/index.js
 
     Server running on port 4000
-    Unable to connect to MongoDB! Cannot read property 'match' of undefined
+    Connected to MongoDB!
 
 DB is not connected since we have not provide env variable for it.
 ```yaml
