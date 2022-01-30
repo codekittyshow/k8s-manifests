@@ -81,5 +81,5 @@ kubectl create deployment code-kitty-fn --image=ghcr.io/codekittyshow/code-kitty
 
 Create service for Code Kitty Frontend Deployment
 ```shell
-kubectl expose deployment deployment/code-kitty-fn -n prod --port 80 --type=LoadBalancer
+kubectl expose deployment/code-kitty-fn -n prod --port 80 --type=LoadBalancer
 ```
