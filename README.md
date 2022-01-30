@@ -76,5 +76,10 @@ kubectl expose deployment/code-kitty-api -n prod
 
 Create the Code Kitty Frontend Deployment:
 ```shell
-kubectl create deployment code-kitty --image=ghcr.io/codekittyshow/code-kitty:latest -n prod --port 80 -o yaml --dry-run=client > fn/code-kitty-fn-deploy.yaml
+kubectl create deployment code-kitty-fn --image=ghcr.io/codekittyshow/code-kitty:latest -n prod --port 80 -o yaml --dry-run=client > fn/code-kitty-fn-deploy.yaml
+```
+
+Create service for Code Kitty Frontend Deployment
+```shell
+kubectl expose deployment deployment/code-kitty-fn -n prod --port 80 --type=LoadBalancer
 ```
