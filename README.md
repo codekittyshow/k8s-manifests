@@ -71,15 +71,29 @@ kubectl apply -f api
 
 Create service for Code Kitty API Deployment
 ```shell
-kubectl expose deployment/code-kitty-api -n prod
+kubectl expose deployment/code-kitty-api -n prod --type=LoadBalancer
+```
+Make sure you have a public IP address for the service
+
+```shell
+curl <EXTERNAL_IP>:8080/api/v1
 ```
 
 Create the Code Kitty Frontend Deployment:
 ```shell
-kubectl create deployment code-kitty-fn --image=ghcr.io/codekittyshow/code-kitty:latest -n prod --port 80 -o yaml --dry-run=client > fn/code-kitty-fn-deploy.yaml
+kubectl create deployment code-kitty --image=ghcr.io/codekittyshow/code-kitty:latest -n prod --port 80 -o yaml --dry-run=client > frontend/code-kitty-deploy.yaml
+```
+
+Let's create frontend deployment
+```shell
+kubectl apply -f frontend
 ```
 
 Create service for Code Kitty Frontend Deployment
 ```shell
-kubectl expose deployment/code-kitty-fn -n prod --port 80 --type=LoadBalancer
+kubectl expose deployment/code-kitty -n prod --port 80 --type=LoadBalancer
+```
+
+```shell
+kubectl get svc -n prod
 ```

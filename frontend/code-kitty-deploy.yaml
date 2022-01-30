@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
-    app: code-kitty-fn
-  name: code-kitty-fn
+    app: code-kitty
+  name: code-kitty
   namespace: prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: code-kitty-fn
+      app: code-kitty
   strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        app: code-kitty-fn
+        app: code-kitty
     spec:
       containers:
       - image: ghcr.io/codekittyshow/code-kitty:latest
