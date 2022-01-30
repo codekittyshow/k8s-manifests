@@ -52,3 +52,12 @@ type: Opaque
 data:
   db-password: MTIzNDU=
 ```
+
+Ref secret to the env variable
+```ymal
+- name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: mongodb-secret
+        key: db-password
+```
