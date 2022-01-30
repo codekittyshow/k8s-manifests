@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: code-kitty
+  name: code-kitty
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-kitty
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: code-kitty
+    spec:
+      containers:
+      - image: ghcr.io/codekittyshow/code-kitty:latest
+        name: code-kitty
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
