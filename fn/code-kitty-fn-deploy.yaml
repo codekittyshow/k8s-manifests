@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: code-kitty-fn
+  name: code-kitty-fn
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-kitty-fn
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: code-kitty-fn
+    spec:
+      containers:
+      - image: ghcr.io/codekittyshow/code-kitty:latest
+        name: code-kitty
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

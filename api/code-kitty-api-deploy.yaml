@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
     app: code-kitty-api
   name: code-kitty-api
@@ -13,16 +14,28 @@ spec:
   strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: code-kitty-api
     spec:
       containers:
       - image: ghcr.io/codekittyshow/code-kitty-api:latest
         name: code-kitty-api
+        ports:
+        - containerPort: 8080
         resources: {}
         env:
         - name: PORT
           value: "8080"
-        - name: MONGO_DB_URI
-          value: "mongodb+srv://chamod:12345@codekitty.sacfe.mongodb.net/CodeKitty?retryWrites=true&w=majority"
+        - name: DB_USERNAME
+          value: "chamod"
+        - name: DB_HOST
+          value: "codekitty.sacfe.mongodb.net"
+        - name: DB_NAME
+          value: "CodeKitty"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: db-password
 status: {}
