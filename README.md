@@ -10,6 +10,12 @@ First Create the Code Kitty API Deployment:
 kubectl create deployment code-kitty-api --image=ghcr.io/codekittyshow/code-kitty-api:latest -n prod -o yaml --dry-run=client > api/code-kitty-api-deploy.yaml
 ```
 
+Set the port
+```yaml
+ports:
+  - containerPort: 8080
+```
+
 Run below command to get logs
 ```shell
 kubectl logs --selector=app=code-kitty-api -n prod --tail -1
@@ -47,17 +53,28 @@ echo -n "12345" | base64
 ```
 
 Add that encoded password to our secret
-```ymal
+```yaml
 type: Opaque
 data:
   db-password: MTIzNDU=
 ```
 
 Ref secret to the env variable
-```ymal
+```yaml
 - name: DB_PASSWORD
     valueFrom:
       secretKeyRef:
         name: mongodb-secret
         key: db-password
+```
+
+Apply yaml we created so far
+```shell
+kubectl apply -f prod-namespace.yaml
+kubectl apply -f mongodb
+kubectl apply -f api
+```
+
+```shell
+kubectl expose deployment/code-kitty-api -n prod
 ```
