@@ -23,6 +23,10 @@ spec:
         env:
         - name: PORT
           value: "8080"
-        - name: MONGO_DB_URI
-          value: "mongodb+srv://chamod:12345@codekitty.sacfe.mongodb.net/CodeKitty?retryWrites=true&w=majority"
+        - name: DB_USERNAME
+          value: "chamod"
+        - name: DB_HOST
+          value: "codekitty.sacfe.mongodb.net"
+        - name: DB_NAME
+          value: "CodeKitty"
 status: {}
