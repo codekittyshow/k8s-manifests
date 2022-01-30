@@ -29,4 +29,9 @@ spec:
           value: "codekitty.sacfe.mongodb.net"
         - name: DB_NAME
           value: "CodeKitty"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: db-password
 status: {}
